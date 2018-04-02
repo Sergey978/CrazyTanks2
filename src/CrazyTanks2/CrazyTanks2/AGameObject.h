@@ -13,13 +13,17 @@ public:
 	void setIdObject(int id);
 	int getIdObject();
 	int checkColision(Position position, int distance);
+	void setHealth(int health);
+	int getHealth();
+
 
 	AGameObject();
 	~AGameObject();
 
-protected:
+private:
 	Position position;
 	int health;
 	int idObject;
+	
 };
 

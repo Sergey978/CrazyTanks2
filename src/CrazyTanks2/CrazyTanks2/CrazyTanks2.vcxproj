@@ -146,14 +146,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AGameObject.h" />
+    <ClInclude Include="AMovable.h" />
     <ClInclude Include="IGameObject.h" />
+    <ClInclude Include="IMovable.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AGameObject.cpp" />
+    <ClCompile Include="AMovableGameObject.cpp" />
     <ClCompile Include="CrazyTanks2.cpp" />
     <ClCompile Include="IGameObject.cpp" />
+    <ClCompile Include="IMovable.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

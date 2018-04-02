@@ -30,6 +30,15 @@ int AGameObject::checkColision(Position position, int distance)
 	return 0;
 }
 
+void AGameObject::setHealth(int health)
+{
+}
+
+int AGameObject::getHealth()
+{
+	return 0;
+}
+
 AGameObject::AGameObject()
 {
 }
