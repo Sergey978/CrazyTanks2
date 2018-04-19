@@ -1,13 +1,14 @@
+#ifndef IMOVABLE_H
+#define IMOVABLE_H
 #pragma once
-#include "AGameObject.h"
+#include"Enums.h"
+
 
 class IMovable
 {
 public:
-	virtual bool isEnemy() = 0;
-	virtual void move(Position position) = 0;
-
 	IMovable();
-	~IMovable();
+	virtual void move(Direction direct) = 0;
+	virtual ~IMovable();
 };
-
+#endif // !IMOVABLE_H

@@ -142,28 +142,46 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AGameObject.h" />
-    <ClInclude Include="AMovable.h" />
-    <ClInclude Include="IGameObject.h" />
+    <ClInclude Include="Body.h" />
+    <ClInclude Include="Control.h" />
+    <ClInclude Include="EnemyTank.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Enums.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Gold.h" />
+    <ClInclude Include="IEntity.h" />
     <ClInclude Include="IMovable.h" />
+    <ClInclude Include="IView.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Tank.h" />
+    <ClInclude Include="TanksGame.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="View.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AGameObject.cpp" />
-    <ClCompile Include="AMovableGameObject.cpp" />
-    <ClCompile Include="CrazyTanks2.cpp" />
-    <ClCompile Include="IGameObject.cpp" />
+    <ClCompile Include="Body.cpp" />
+    <ClCompile Include="Control.cpp" />
+    <ClCompile Include="EnemyTanks.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gold.cpp" />
+    <ClCompile Include="IEntity.cpp" />
     <ClCompile Include="IMovable.cpp" />
+    <ClCompile Include="IView.cpp" />
+    <ClCompile Include="CrazyTanks.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Tank.cpp" />
+    <ClCompile Include="TanksGame.cpp" />
+    <ClCompile Include="View.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
