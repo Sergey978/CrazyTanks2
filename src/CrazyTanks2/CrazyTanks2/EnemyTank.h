@@ -14,7 +14,6 @@ public:
 	void setView(IView *value);
 	void update();
 	void onDied(Entity &entity);
-	void move();
 	void render();
 	void setPhysics(IMovable *phys);
 	IMovable *getPhysics() const;

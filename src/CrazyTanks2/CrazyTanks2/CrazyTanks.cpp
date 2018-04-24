@@ -1,6 +1,6 @@
 
 #include "stdafx.h"
-#include"TanksGame.h"
+#include"Game.h"
 #include"Tank.h"
 #include <iostream>
 #include<Windows.h>
@@ -9,7 +9,7 @@
 int main()
 {
 	srand((unsigned)time(0)); //So random numbers will be always random.
-	TanksGame game;
+	Game game;
 
 	game.startGame();
 	while (1)
@@ -19,9 +19,6 @@ int main()
 		Sleep(50);
 
 	}
-
-
-
 
 	getchar();
 	return 0;

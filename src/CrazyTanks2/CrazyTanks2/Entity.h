@@ -4,8 +4,6 @@
 #include"IEntity.h"
 #include"Enums.h"
 
-
-using namespace std;
 class Entity : public IEntity
 {
 public:
@@ -17,17 +15,20 @@ public:
 	void setBody(Body *value);
 	Signal getSignal();
 	void setSignal(Signal value);
-	vector<IEntity *> getTargets();
-	void setTargets(vector<IEntity *> value);
-	vector<IEntity *> getGroup();
-	void setGroup(vector<IEntity *> value);
+	void setType(EntityType t);
+	EntityType getType();
+	std::vector<IEntity *> getTargets();
+	void setTargets(std::vector<IEntity *> value);
+	std::vector<IEntity *> getGroup();
+	void setGroup(std::vector<IEntity *> value);
 
 	virtual ~Entity();
 private:
 	Body *body;
+	EntityType type;
 	Signal signal;
-	vector <IEntity *>targets;
-	vector <IEntity *>group;
+	std::vector <IEntity *> targets;
+	std::vector <IEntity *> group;
 
 };
 

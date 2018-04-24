@@ -8,8 +8,7 @@
 Tank::Tank()
 {
 	Body *body = new Body(this);
-	body->setX(10);
-	body->setY(10);
+	
 	body->setDirection(Up);
 	setBody(body);
 
@@ -24,18 +23,8 @@ void Tank::update()
 {
 	view->setSymbol(' ');//clearold position
 	render();
-	move();
-	view->setSymbol('#');
 
 
-}
-
-void Tank::onDied(Entity &entity)
-{
-}
-
-void Tank::move()
-{
 	KeyPressed key_ = Control::getKey();
 
 	int oldX_, oldY_;
@@ -74,29 +63,49 @@ void Tank::move()
 
 	}
 
-
 	}
 
 	// checking the ability to move
 	bool movePosible = true;
-	vector<IEntity *> targets_ = getTargets();
-	for each (IEntity *ent in targets_)
+	int newX_ = this->getBody()->getX();
+	int	newY_ = this->getBody()->getY();
+
+
+	if (newX_ >= 30 || newX_ == 0 || newY_ >= 30 || newY_ == 0)
 	{
-		if (getBody()->testCollision(*ent))
+		movePosible = false;
+	}
+	else
+	{
+		std::vector<IEntity *> otherEntities = getTargets();
+		std::vector<IEntity *> group = getGroup();
+		otherEntities.insert(otherEntities.end(), group.begin(), group.end());
+		for each (IEntity *ent in otherEntities)
 		{
-			movePosible = false;
+			if (getBody()->testCollision(*ent))
+			{
+				movePosible = false;
+			}
+
 		}
 
 	}
-
-
+	
 	if (movePosible == false)
 	{
 		getBody()->setX(oldX_);
 		getBody()->setY(oldY_);
 	}
-	
+
+	view->setSymbol('#');
+
 }
+
+void Tank::onDied(Entity &entity)
+{
+}
+
+
 
 void Tank::render()
 {
@@ -124,6 +133,16 @@ void Tank::setPhysics(IMovable * phys)
 IMovable * Tank::getPhysics() const
 {
 	return physics;
+}
+
+void Tank::setHealth(IHealth * h)
+{
+	health = h;
+}
+
+IHealth * Tank::getHealth() const
+{
+	return health;
 }
 
 

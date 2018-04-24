@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "EnemyTank.h"
 #include "View.h"
-#include"TanksGame.h"
+#include"Game.h"
 
 
 EnemyTank::EnemyTank()
@@ -22,46 +22,29 @@ void EnemyTank::update()
 {
 	view->setSymbol(' ');//clear old position
 	render();
-	move();
-	view->setSymbol('W');
 
-
-}
-
-void EnemyTank::onDied(Entity &entity)
-{
-}
-
-void EnemyTank::move()
-{
-	Direction direct= getBody()->getDirection();
-
-	
-
+	Direction direct = getBody()->getDirection();
 
 	int oldX_ = this->getBody()->getX();
 	int	oldY_ = this->getBody()->getY();
 
-	if (rand() % TanksGame::CHANCE_ENEMY_MOVE == 1)
+
+
+	if (rand() % Game::CHANCE_ENEMY_MOVE == 1)
 	{
-		if (rand() % TanksGame::CHANCE_CHANGE_DIRECRION == 1)
+		if (rand() % Game::CHANCE_CHANGE_DIRECRION == 1)
 		{
 			direct = static_cast <Direction>(rand() % (Down + 1));
 		}
-		
+
 		physics->move(direct);
 	}
 
-
-
-	// checking the ability to move
 	bool movePosible = true;
-	vector<IEntity *> otherEntities;
+	std::vector<IEntity *> otherEntities;
 	otherEntities = getTargets();
-	vector<IEntity *> group = getGroup();
+	std::vector<IEntity *> group = getGroup();
 	otherEntities.insert(otherEntities.end(), group.begin(), group.end());
-
-
 
 	for each (IEntity *ent in otherEntities)
 	{
@@ -72,13 +55,9 @@ void EnemyTank::move()
 			{
 				movePosible = false;
 			}
-
 		}
 
-
-
 	}
-
 
 	int newX_ = this->getBody()->getX();
 	int	newY_ = this->getBody()->getY();
@@ -95,9 +74,15 @@ void EnemyTank::move()
 		getBody()->setY(oldY_);
 	}
 
-
+	view->setSymbol('W'); //set symbol in new position
 
 }
+
+void EnemyTank::onDied(Entity &entity)
+{
+}
+
+
 
 void EnemyTank::render()
 {

@@ -8,7 +8,6 @@
 
 
 class Body;
-using namespace std;
 
 class IEntity
 {
@@ -19,10 +18,12 @@ public:
 	virtual void render() = 0;
 	virtual Body *getBody() const = 0;
 	virtual void setBody(Body *value) = 0;
-	virtual vector<IEntity *> getTargets() = 0;
-	virtual void setTargets(vector<IEntity *> value) = 0;
-	virtual vector<IEntity *> getGroup() = 0;
-	virtual void setGroup(vector<IEntity *> value) = 0;
+	virtual std::vector<IEntity *> getTargets() = 0;
+	virtual void setTargets(std::vector<IEntity *> value) = 0;
+	virtual std::vector<IEntity *> getGroup() = 0;
+	virtual void setGroup(std::vector<IEntity *> value) = 0;
+	virtual void setType(EntityType t) = 0;
+	virtual EntityType getType() = 0;
 	
 	virtual	~IEntity() {};
 };

@@ -143,32 +143,44 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Control.h" />
     <ClInclude Include="EnemyTank.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityCreator.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gold.h" />
+    <ClInclude Include="Health.h" />
     <ClInclude Include="IEntity.h" />
+    <ClInclude Include="IEntityCreator.h" />
+    <ClInclude Include="IHealth.h" />
     <ClInclude Include="IMovable.h" />
+    <ClInclude Include="IObservable.h" />
+    <ClInclude Include="IObsever.h" />
     <ClInclude Include="IView.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Tank.h" />
-    <ClInclude Include="TanksGame.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="View.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Body.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Control.cpp" />
     <ClCompile Include="EnemyTanks.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityCreator.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gold.cpp" />
+    <ClCompile Include="Health.cpp" />
     <ClCompile Include="IEntity.cpp" />
+    <ClCompile Include="IHealth.cpp" />
     <ClCompile Include="IMovable.cpp" />
+    <ClCompile Include="IObservable.cpp" />
+    <ClCompile Include="IObsever.cpp" />
     <ClCompile Include="IView.cpp" />
     <ClCompile Include="CrazyTanks.cpp" />
     <ClCompile Include="Physics.cpp" />
@@ -179,7 +191,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Tank.cpp" />
-    <ClCompile Include="TanksGame.cpp" />
     <ClCompile Include="View.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>

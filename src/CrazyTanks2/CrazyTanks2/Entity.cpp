@@ -44,22 +44,32 @@ void Entity::setSignal(Signal value)
 {
 }
 
-vector<IEntity *> Entity::getTargets()
+void Entity::setType(EntityType t)
+{
+	type = t;
+}
+
+EntityType Entity::getType()
+{
+	return type;
+}
+
+std::vector<IEntity *> Entity::getTargets()
 {
 	return targets;
 }
 
-void Entity::setTargets(vector<IEntity *> value)
+void Entity::setTargets(std::vector<IEntity *> value)
 {
 	targets = value;
 }
 
-vector<IEntity*> Entity::getGroup()
+std::vector<IEntity*> Entity::getGroup()
 {
 	return group;
 }
 
-void Entity::setGroup(vector<IEntity*> value)
+void Entity::setGroup(std::vector<IEntity*> value)
 {
 	group = value;
 }
