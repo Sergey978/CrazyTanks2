@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Bullet.h"
+#include "Game.h"
 
 
 Bullet::Bullet()
@@ -91,7 +92,7 @@ void Bullet::update()
 	int	newY_ = this->getBody()->getY();
 
 
-	if (newX_ >= 30 || newX_ == 0 || newY_ >= 30 || newY_ == 0)
+	if (newX_ >= Game::FIELD_WIDTH || newX_ < 1 || newY_ > Game::FIELD_LENGTH || newY_ < 1)
 	{
 		movePosible = false;
 	}
