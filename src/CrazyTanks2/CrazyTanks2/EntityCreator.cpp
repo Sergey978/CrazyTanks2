@@ -44,30 +44,6 @@ IEntity *EntityCreator::getEntity(EntityType entName)
 	return nullptr;
 }
 
-IEntity * EntityCreator::newTank()
-{
-	return nullptr;
-}
-
-IEntity * EntityCreator::newEnemyTank()
-{
-	return nullptr;
-}
-
-IEntity * EntityCreator::newBullet()
-{
-	return nullptr;
-}
-
-IEntity * EntityCreator::newWall()
-{
-	return nullptr;
-}
-
-IEntity * EntityCreator::newGold()
-{
-	return nullptr;
-}
 
 
 EntityCreator::~EntityCreator()

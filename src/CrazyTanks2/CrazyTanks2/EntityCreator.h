@@ -7,7 +7,7 @@ class EntityCreator :
 {
 public:
 	EntityCreator();
-	IEntity *getEntity(EntityType type);
+	static IEntity *getEntity(EntityType type);
 	IEntity *newTank();
 	IEntity *newEnemyTank();
 	IEntity *newBullet();

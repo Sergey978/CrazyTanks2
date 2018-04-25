@@ -42,18 +42,16 @@ void Game::render() {
 
 void Game::startGame() {
 
-	//set gold
-	Gold *gold = new Gold;
-	players.push_back(gold);
-	gold->setGroup(players);
-	addEntity(*gold);
+	setCastle_();
 
-	setWalls();
+	setWalls_();
 
-	Tank *playerTank = new Tank;
+	IEntity *playerTank = EntityCreator::getEntity(EntityType::TankInst);
 	playerTank->setGroup(players);
 	players.push_back(playerTank);
 	addEntity(*playerTank);
+	playerTank->getBody()->setX(5);
+	playerTank->getBody()->setY(5);
 
 	EnemyTank *enemyT = new EnemyTank;
 
@@ -114,7 +112,7 @@ COORD Game::genPosition(int maxX, int maxY)
 	return pos;
 }
 
-void Game::setWalls()
+void Game::setWalls_()
 {
 	//set walls
 	int wallsNumb_ = 0; // current generated number of walls
@@ -187,9 +185,91 @@ void Game::setWalls()
 
 }
 
+void Game::setCastle_()
+{
+	//set gold
+	IEntity *gold = EntityCreator::getEntity(EntityType::GoldInst);
+	int x = Game::FIELD_WIDTH / 2;
+	int y = Game::FIELD_LENGTH - 1;
+	gold->getBody()->setX(x);
+	gold->getBody()->setY(y);
+	players.push_back(gold);
+	gold->setGroup(players);
+	addEntity(*gold);
+
+	//set walls of castle
+	for (int xw = x - 1; xw <= x + 1; xw++)
+	{
+		for (int yw = y - 1; yw <= y + 1; yw++)
+		{
+			if (xw == x && yw == y)
+			{
+				continue;
+			}
+			IEntity *wall = EntityCreator::getEntity(EntityType::WallInst);
+			wall->getBody()->setX(xw);
+			wall->getBody()->setY(yw);
+			neutral.push_back(wall);
+			wall->setGroup(neutral);
+			addEntity(*wall);
 
 
+		}
 
+	}
+
+
+}
+
+bool Game::isAvailablePosition_(int x, int y, int length, Direction direct )
+{
+	int x2 = 0, y2 = 0 ; // calculated coordinates for area
+
+	if (x < 0 || y < 0 )
+	{
+		return false;
+	}
+
+	if (direct == Direction::Right )
+	{
+		x2 = x + length; y2 = y;
+		if (Game::FIELD_WIDTH < x2)
+		{
+			return false;
+		}
+
+	}
+	if (direct == Direction::Down )
+	{
+		x2 = x; y2 = y + length;
+
+		if (Game::FIELD_LENGTH <= y2)
+		{
+			return false;
+		}
+		
+	}
+
+	//check if other entity busy this place
+	for (int xe = x; xe <= x2; xe++)
+	{
+		for (int ye = y; y <= y2; ye++)
+		{
+			for each (IEntity *ent in entities)
+			{
+				if (ent->getBody()->getX() == xe && ent->getBody()->getY == ye)
+				{
+					return false;
+				}
+			}
+		}
+
+
+	}
+
+	return true;
+
+}
 
 Game::~Game()
 {

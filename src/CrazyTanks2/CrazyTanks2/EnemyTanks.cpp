@@ -34,7 +34,7 @@ void EnemyTank::update()
 	{
 		if (rand() % Game::CHANCE_CHANGE_DIRECRION == 1)
 		{
-			direct = static_cast <Direction>(rand() % (Down + 1));
+			direct = static_cast <Direction>(rand() % (3 + 1));
 		}
 
 		physics->move(direct);

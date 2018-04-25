@@ -8,6 +8,7 @@
 #include "EnemyTank.h"
 #include <windows.h>
 #include"IObsever.h"
+#include"EntityCreator.h"
 
 class Game: public IObsever
 {
@@ -52,7 +53,12 @@ private:
 	COORD genPosition(int maxX, int maxY);
 	bool exit_ = false;
 
-	void setWalls();
+	void setWalls_();
+	void setCastle_();
+
+	bool isAvailablePosition_(int x, int y, int length, Direction direct);
+
+	
 	
 };
 

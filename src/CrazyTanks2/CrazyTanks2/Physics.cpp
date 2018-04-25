@@ -9,11 +9,10 @@ Physics::Physics(IEntity * ent)
 
 void Physics::move(Direction direct)
 {
-	int curX_, curY_ , oldX_, oldY_; //current x, y
+	int curX_, curY_ ; //current x, y
 	curX_ = entity->getBody()->getX();
 	curY_ = entity->getBody()->getY();
-	oldX_ = curX_;
-	oldY_ = curY_;
+	
 
 	switch (direct)
 	{

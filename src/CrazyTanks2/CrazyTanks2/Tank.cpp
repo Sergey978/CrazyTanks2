@@ -2,6 +2,7 @@
 #include "Tank.h"
 #include"View.h"
 #include"Physics.h"
+#include"Game.h"
 
 
 
@@ -71,7 +72,7 @@ void Tank::update()
 	int	newY_ = this->getBody()->getY();
 
 
-	if (newX_ >= 30 || newX_ == 0 || newY_ >= 30 || newY_ == 0)
+	if (newX_ >= Game::FIELD_WIDTH || newX_ == 0 || newY_ >= Game::FIELD_LENGTH || newY_ == 0)
 	{
 		movePosible = false;
 	}
