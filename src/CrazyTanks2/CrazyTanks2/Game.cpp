@@ -121,64 +121,18 @@ void Game::setWalls_()
 	{
 
 		int length = rand() % (MAX_LENGTH_OF_WALL + 1);
-		int direct = rand() % 2;
+		Direction direct = static_cast <Direction>(rand() % 2);
 		COORD newCoord = genPosition(FIELD_WIDTH, FIELD_LENGTH);
 
-		if (direct == 1) //horizont position
+		if (isAvailablePosition_(newCoord.X, newCoord.Y, length, direct))
 		{
-			for (int x = newCoord.X; x <= newCoord.X + length; x++)
+			if (direct == Direction::Right)
 			{
-				if (x <= FIELD_WIDTH) {
-
-					Wall *newWall_ = new Wall(x, newCoord.Y);
-					wall_.push_back(newWall_);
-				}
 
 
 			}
-		}
-		else if (direct == 0) //vertical position
-		{
-
-			for (int y = newCoord.Y; y <= newCoord.Y + length; y++)
-			{
-
-				if (y <= FIELD_WIDTH) {
-
-					Wall *newWall_ = new Wall(newCoord.X, y);
-					wall_.push_back(newWall_);
-
-				}
-
-			}
-
 
 		}
-		bool collision = false;
-		for each (IEntity *ent in getEntities())
-		{
-			//check collision with other entities
-
-			for each (IEntity *wall in wall_)
-			{
-
-				collision = ent->getBody()->testCollision(*wall);
-			}
-
-		}
-		if (collision == false)
-		{
-			wallsNumb_++;
-			for each (IEntity *wall in wall_)
-			{
-				neutral.push_back(wall);
-				wall->setGroup(neutral);
-				addEntity(*wall);
-			}
-
-
-		}
-		wall_.clear();
 
 	}
 
