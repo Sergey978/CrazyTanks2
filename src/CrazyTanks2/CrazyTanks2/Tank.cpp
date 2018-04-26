@@ -1,23 +1,26 @@
 #include "stdafx.h"
 #include "Tank.h"
-#include"View.h"
-#include"Physics.h"
-#include"Game.h"
-
-
 
 Tank::Tank()
 {
 	Body *body = new Body(this);
-	
 	body->setDirection(Up);
 	setBody(body);
 
-	view = new View(this);
-	view->setSymbol('#');
 
-	//setView(view);
-	physics = new Physics(this);
+	Health *health = new Health(this);
+	health->setHitPoiints(3);
+	setHealth(health);
+
+
+	View *view = new View(this);
+	view->setSymbol('#');
+	setView(view);
+
+
+	setControl( new PlayerControl(this))  ;
+	
+	setWeapon( new Weapon(this));
 }
 
 void Tank::update()
@@ -100,6 +103,10 @@ void Tank::update()
 
 	view->setSymbol('#');
 
+}
+
+void Tank::onDied()
+{
 }
 
 void Tank::onDied(Entity &entity)

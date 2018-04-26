@@ -1,3 +1,5 @@
+#ifndef ENUMS_H
+#define ENUMS_H
 #pragma once
 
 enum Direction
@@ -12,9 +14,9 @@ enum EntityType
 
 };
 
-enum KeyPressed
+enum Command
 {
-	Nothing = 0, Enter = 1, space = 2, left = 3, right = 4, up = 5, down = 6
+	Nothing = 0,  left, right , up , down, shoot, pause 
 
 };
 
@@ -23,3 +25,4 @@ enum Signal
 	CreateEntity,
 	DestroyEntity
 };
+#endif // !ENUMS_H

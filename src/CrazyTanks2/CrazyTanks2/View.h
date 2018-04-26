@@ -1,10 +1,8 @@
 #pragma once
-#include "IView.h"
 #include <windows.h>
 #include <iostream>
 
-class View :
-	public IView
+class View 	
 {
 public:
 	View(IEntity *ent);

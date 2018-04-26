@@ -2,7 +2,7 @@
 #define GOLD_H
 #pragma once
 #include "Entity.h"
-#include"IView.h"
+
 
 class Gold :
 	public Entity

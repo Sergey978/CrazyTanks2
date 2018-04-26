@@ -1,14 +1,14 @@
 #ifndef HEALTH_H
 #define HEALTH_H
 #pragma once
-#include "IHealth.h"
 #include"IEntity.h"
-class Health :
-	public IHealth
+class Health 
 {
 public:
 	Health(IEntity *ent);
 	void hit(int damage);
+	void setHitPoiints(int points);
+	int getHitpoints();
 	~Health();
 
 private:

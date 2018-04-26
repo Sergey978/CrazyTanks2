@@ -44,6 +44,56 @@ void Entity::setSignal(Signal value)
 {
 }
 
+void Entity::setHealth(Health * health)
+{
+	this->health = health;
+}
+
+Health * Entity::getHealth() const
+{
+	return health;
+}
+
+void Entity::setView(View * view)
+{
+	this->view = view;
+}
+
+View * Entity::getview() const
+{
+	return view;
+}
+
+void Entity::setControl(IControl *contr)
+{
+	this->control = contr;
+}
+
+IControl * Entity::getControl() const
+{
+	return control;
+}
+
+void Entity::setWeapon(IWeapon * weapon)
+{
+	this -> weapon = weapon;
+}
+
+IWeapon * Entity::getWeapon() const
+{
+	return weapon;
+}
+
+void Entity::setPhysics(IMovable * physics)
+{
+	this->physics = physics;
+}
+
+IMovable *Entity::getPhysics() const
+{
+	return physics;
+}
+
 void Entity::setType(EntityType t)
 {
 	type = t;

@@ -18,6 +18,16 @@ void Health::hit(int damage)
 	}
 }
 
+void Health::setHitPoiints(int points)
+{
+	hitPoints = points;
+}
+
+int Health::getHitpoints()
+{
+	return hitPoints;
+}
+
 Health::~Health()
 {
 }
