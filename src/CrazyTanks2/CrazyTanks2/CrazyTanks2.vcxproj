@@ -143,7 +143,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
+    <ClInclude Include="BotControl.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="NotControl.h" />
+    <ClInclude Include="Unarmed.h" />
     <ClInclude Include="PlayerControl.h" />
     <ClInclude Include="EnemyTank.h" />
     <ClInclude Include="Entity.h" />
@@ -163,13 +166,17 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Tank.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Unmoved.h" />
     <ClInclude Include="View.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Body.cpp" />
+    <ClCompile Include="BotControl.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="NotControl.cpp" />
+    <ClCompile Include="Unarmed.cpp" />
     <ClCompile Include="PlayerControl.cpp" />
     <ClCompile Include="EnemyTanks.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -192,6 +199,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Tank.cpp" />
+    <ClCompile Include="Unmoved.cpp" />
     <ClCompile Include="View.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Weapon.cpp" />

@@ -1,3 +1,5 @@
+#ifndef PHYSICS_H
+#define PHYSICS_H
 #pragma once
 #include "IMovable.h"
 #include"IEntity.h"
@@ -14,3 +16,4 @@ private:
 	IEntity *entity;
 };
 
+#endif // !PHYSICS_H

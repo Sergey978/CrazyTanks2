@@ -1,5 +1,9 @@
+#ifndef WEAPON
+#define WEAPON
 #pragma once
 #include "IWeapon.h"
+#include"IEntity.h"
+
 class Weapon :
 	public IWeapon
 {
@@ -12,3 +16,4 @@ private:
 	IEntity * entity;
 };
 
+#endif // !WEAPON

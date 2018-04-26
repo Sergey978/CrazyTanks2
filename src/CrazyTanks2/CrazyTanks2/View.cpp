@@ -19,6 +19,21 @@ void View::setSymbol(char ch)
 
 void View::render()
 {
+	
+	setCursorPosition();
+	std::cout << symbol;
+
+	
+}
+
+void View::clear()
+{
+	setCursorPosition();
+	std::cout << ' ';
+}
+
+void View::setCursorPosition()
+{
 	HANDLE hOut;
 	COORD Position;
 
@@ -27,10 +42,6 @@ void View::render()
 	Position.X = entity->getBody()->getX();
 	Position.Y = entity->getBody()->getY();
 	SetConsoleCursorPosition(hOut, Position);
-
-	std::cout << symbol;
-
-	
 }
 
 
