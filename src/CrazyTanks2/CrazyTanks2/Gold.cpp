@@ -6,38 +6,28 @@
 Gold::Gold()
 {
 	Body *body = new Body(this);
-	body->setX(1);
-	body->setY(1);
+	
 	body->setDirection(Up);
 	setBody(body);
 
-	view = new View(this);
-	view->setSymbol('2');
+	Health *health = new Health(this);
+	health->setHitPoints(3);
+	setHealth(health);
+
+
+	View *view = new View(this);
+	view->setSymbol('G');
+	setView(view);
 }
 
-IView * Gold::getView() const
-{
-	return view;
-}
-
-void Gold::setView(IView * value)
-{
-	view = value;
-}
 
 void Gold::update()
 {
 }
 
-void Gold::onDied(Entity & entity)
+void Gold::onDied()
 {
 }
-
-void Gold::render()
-{
-	view->render();
-}
-
 
 
 Gold::~Gold()

@@ -1,48 +1,41 @@
 #include "stdafx.h"
 #include "Wall.h"
 #include"View.h"
+#include "Unarmed.h"
+#include"Unmoved.h"
+#include"NotControl.h"
 
 
 Wall::Wall()
 {
 	Body *body = new Body(this);
-	body->setX(20);
-	body->setY(20);
 	body->setDirection(Up);
 	setBody(body);
 
-	view = new View(this);
+
+	Health *health = new Health(this);
+	health->setHitPoints(1);
+	setHealth(health);
+
+
+	View *view = new View(this);
 	view->setSymbol('1');
-}
+	setView(view);
 
-Wall::Wall(int x, int y):Wall()
-{
-	getBody()->setX(x);
-	getBody()->setY(y);
-}
 
-IView * Wall::getView() const
-{
-	return view;
-}
-
-void Wall::setView(IView * value)
-{
-	view = value;
+	setControl(new NotControl(this));
+	setWeapon(new Unarmed(this));
+	setPhysics(new Unmoved(this));
 }
 
 void Wall::update()
 {
 }
 
-void Wall::onDied(Entity & entity)
+void Wall::onDied()
 {
 }
 
-void Wall::render()
-{
-	view->render();
-}
 
 
 Wall::~Wall()

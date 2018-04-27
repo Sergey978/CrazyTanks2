@@ -3,7 +3,7 @@
 
 #pragma once
 #include "Entity.h"
-#include"IView.h"
+
 
 
 class Wall :
@@ -11,15 +11,10 @@ class Wall :
 {
 public:
 	Wall();
-	Wall(int x, int y);
-	IView *getView() const;
-	void setView(IView *value);
 	void update();
-	void onDied(Entity &entity);
-	void render();
+	void onDied();
 	virtual ~Wall();
-private:
-	IView *view;
+
 };
 
 

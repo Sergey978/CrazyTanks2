@@ -16,6 +16,7 @@ void Entity::destroy()
 
 void Entity::update()
 {
+	
 }
 
 void Entity::render()

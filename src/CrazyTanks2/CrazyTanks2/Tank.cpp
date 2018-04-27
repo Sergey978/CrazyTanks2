@@ -9,7 +9,7 @@ Tank::Tank()
 
 
 	Health *health = new Health(this);
-	health->setHitPoiints(3);
+	health->setHitPoints(3);
 	setHealth(health);
 
 
@@ -26,7 +26,8 @@ Tank::Tank()
 
 void Tank::update()
 {
-	
+	getPhysics()->move(getControl()->getCommand());
+	;
 
 }
 

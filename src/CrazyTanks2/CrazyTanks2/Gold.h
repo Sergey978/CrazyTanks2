@@ -9,16 +9,12 @@ class Gold :
 {
 public:
 	Gold();
-	IView *getView() const;
-	void setView(IView *value);
 	void update();
-	void onDied(Entity &entity);
-	void render();
-
+	void onDied();
 	virtual ~Gold();
 
 private:
-	IView *view;
+	
 };
 
 #endif // !GOLD_H

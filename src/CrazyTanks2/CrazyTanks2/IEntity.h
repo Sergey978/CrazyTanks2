@@ -12,6 +12,14 @@
 #include"IMovable.h"
 
 class Body;
+class Health;
+class View;
+class IControl;
+class IWeapon;
+class IMovable;
+
+
+
 
 class IEntity
 {

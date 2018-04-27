@@ -18,7 +18,7 @@ void Health::hit(int damage)
 	}
 }
 
-void Health::setHitPoiints(int points)
+void Health::setHitPoints(int points)
 {
 	hitPoints = points;
 }

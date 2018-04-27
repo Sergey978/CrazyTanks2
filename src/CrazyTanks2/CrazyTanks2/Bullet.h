@@ -13,19 +13,11 @@ class Bullet :
 {
 public:
 	Bullet();
-	IView *getView() const;
-	void setView(IView *value);
-	void update();
-	void onDied(Entity &entity);
-	void render();
+		void update();
+	void onDied();
 
-	void setPhysics(IMovable *phys);
-	IMovable *getPhysics() const;
 	virtual ~Bullet();
 
-private :
-	IMovable *physics;
-	IView *view;
 };
 
 #endif // !BULLET_H

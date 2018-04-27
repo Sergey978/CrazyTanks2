@@ -178,7 +178,7 @@
     <ClCompile Include="NotControl.cpp" />
     <ClCompile Include="Unarmed.cpp" />
     <ClCompile Include="PlayerControl.cpp" />
-    <ClCompile Include="EnemyTanks.cpp" />
+    <ClCompile Include="EnemyTank.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityCreator.cpp" />
     <ClCompile Include="Game.cpp" />

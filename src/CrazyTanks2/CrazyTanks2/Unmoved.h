@@ -1,5 +1,5 @@
-#ifndef UNMOVED_H;
-#define UNMOVED_H;
+#ifndef UNMOVED_H
+#define UNMOVED_H
 #pragma once
 #include "IMovable.h"
 #include "IEntity.h"
@@ -16,4 +16,4 @@ private:
 	IEntity *entity;
 };
 
-#endif // !UNMOVED_H;
+#endif // !UNMOVED_H
