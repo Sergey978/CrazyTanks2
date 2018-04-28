@@ -30,6 +30,12 @@ EnemyTank::EnemyTank()
 
 void EnemyTank::update()
 {
+	
+	
+		getView()->clear();
+		Entity::update();
+	
+
 
 }
 

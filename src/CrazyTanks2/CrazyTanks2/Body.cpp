@@ -2,7 +2,7 @@
 #include "body.h"
 
 
-Body::Body(IEntity *ent)
+Body::Body(Entity *ent)
 {
 	this->entity = ent;
 	x = 0;
@@ -12,7 +12,7 @@ Body::Body(IEntity *ent)
 }
 
 // return true if point not available
-bool Body::testCollision(IEntity &otherEntity)
+bool Body::testCollision(Entity &otherEntity)
 {
 	int oX_ = otherEntity.getBody()->getX();
 	int oY_ = otherEntity.getBody()->getY();

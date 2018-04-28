@@ -8,7 +8,7 @@ class IMovable
 {
 public:
 	IMovable();
-	virtual void move(Direction direct) = 0;
+	virtual void move() = 0;
 	virtual ~IMovable();
 };
 #endif // !IMOVABLE_H

@@ -14,7 +14,7 @@ Bullet::Bullet()
 
 
 	Health *health = new Health(this);
-	health->setHitPoints(3);
+	health->setHitPoints(1);
 	setHealth(health);
 
 

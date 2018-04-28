@@ -2,18 +2,18 @@
 #define PHYSICS_H
 #pragma once
 #include "IMovable.h"
-#include"IEntity.h"
+#include"Entity.h"
 class Physics :
 	public IMovable
 {
 public:
 	
-	Physics(IEntity *ent);
-	void move(Direction direct);
+	Physics(Entity *ent);
+	void move();
 	virtual ~Physics();
 
 private:
-	IEntity *entity;
+	Entity *entity;
 };
 
 #endif // !PHYSICS_H

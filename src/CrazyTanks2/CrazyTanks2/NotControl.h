@@ -2,18 +2,18 @@
 #define NOTCONTROL_H
 #pragma once
 #include "IControl.h"
-#include"IEntity.h"
+#include"Entity.h"
 
 class NotControl :
 	public IControl
 {
 public:
-	NotControl(IEntity * entity);
+	NotControl(Entity * entity);
 	Command getCommand();
 
 	virtual ~NotControl();
 private:
-	IEntity * entity;
+	Entity * entity;
 };
 
 #endif // !NOTCONTROL_H

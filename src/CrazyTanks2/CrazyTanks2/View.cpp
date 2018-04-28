@@ -2,7 +2,7 @@
 #include "View.h"
 
 
-View::View(IEntity *ent)
+View::View(Entity *ent)
 {
 	this->entity = ent;
 }

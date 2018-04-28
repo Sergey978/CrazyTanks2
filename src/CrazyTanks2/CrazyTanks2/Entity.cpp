@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include"Entity.h"
-#include"Body.h"
+
 
 
 
@@ -16,17 +16,95 @@ void Entity::destroy()
 
 void Entity::update()
 {
+	Command command = control->getCommand();
+
+	switch (command)
+	{
+	case Command::left:
+	{
+		body->setDirection(Direction::Left);
+		break;
+	}
+	case Command::right:
+	{
+		body->setDirection(Direction::Right);
+		break;
+	}
+	case Command::up:
+	{
+		body->setDirection(Direction::Up);
+		break;
+	}
+	case Command::down:
+	{
+		body->setDirection(Direction::Down);
+		break;
+	}
+
+
+	case Command::shoot:
+	{
+		weapon->shoot();
+	}
+
+
+	default:
+		break;
+	}
+
+	int oldX_ = this->getBody()->getX();
+	int	oldY_ = this->getBody()->getY();
+
 	
+
+	if (command != Nothing )
+	{
+		physics->move();
+
+	}
+
+
+
+
+	//testCollision with other Entities
+	bool isCollision = false;
+
+	std::vector<IEntity *> otherEntities;
+	otherEntities = getTargets();
+	std::vector<IEntity *> group = getGroup();
+	otherEntities.insert(otherEntities.end(), group.begin(), group.end());
+
+	for each (Entity *ent in otherEntities)
+	{
+		//skip check colision with yourself
+		if (ent != this)
+		{
+			if (getBody()->testCollision(*ent))
+			{
+				isCollision = true;
+			}
+
+		}
+
+	}
+
+	if (isCollision)
+	{
+		body->setX(oldX_);
+		body->setY(oldY_);
+	}
+	
+
 }
 
 void Entity::render()
 {
-	
+	view->render();
 }
 
- Body *Entity::getBody() const 
+Body *Entity::getBody() const
 {
-	
+
 	return body;
 }
 
@@ -45,6 +123,24 @@ void Entity::setSignal(Signal value)
 {
 }
 
+void Entity::addObserver(IObserver *o)
+{
+	observers.push_back(o);
+}
+
+void Entity::removeObserver(IObserver *o)
+{
+	
+}
+
+void Entity::notifyObservers( Signal sig ,  Entity *entity)
+{
+	for each (IObserver *obs in observers)
+	{
+		obs->handleEvent(sig, *entity);
+	}
+}
+
 void Entity::setHealth(Health * health)
 {
 	this->health = health;
@@ -60,7 +156,7 @@ void Entity::setView(View * view)
 	this->view = view;
 }
 
-View * Entity::getview() const
+View * Entity::getView() const
 {
 	return view;
 }
@@ -77,7 +173,7 @@ IControl * Entity::getControl() const
 
 void Entity::setWeapon(IWeapon * weapon)
 {
-	this -> weapon = weapon;
+	this->weapon = weapon;
 }
 
 IWeapon * Entity::getWeapon() const

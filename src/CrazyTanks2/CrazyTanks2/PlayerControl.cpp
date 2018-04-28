@@ -4,7 +4,7 @@
 
 
 
-PlayerControl::PlayerControl(IEntity * entity)
+PlayerControl::PlayerControl(Entity * entity)
 {
 	ent = entity;
 }

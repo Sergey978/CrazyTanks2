@@ -2,7 +2,7 @@
 #include "Unarmed.h"
 
 
-Unarmed::Unarmed(IEntity *ent)
+Unarmed::Unarmed(Entity *ent)
 {
 	this->entity = ent;
 }

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Tank.h"
 
+
 Tank::Tank()
 {
 	Body *body = new Body(this);
@@ -18,16 +19,22 @@ Tank::Tank()
 	setView(view);
 
 
-	setControl( new PlayerControl(this));	
-	setWeapon( new Weapon(this));
+	setControl(new PlayerControl(this));
+	setWeapon(new Weapon(this));
 	setPhysics(new Physics(this));
+
+	
 
 }
 
 void Tank::update()
 {
-	getPhysics()->move(getControl()->getCommand());
-	;
+
+	getView()->clear();
+	Entity::update();
+
+	
+
 
 }
 

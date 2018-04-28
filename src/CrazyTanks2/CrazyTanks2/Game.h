@@ -7,10 +7,10 @@
 #include"Gold.h"
 #include "EnemyTank.h"
 #include <windows.h>
-#include"IObsever.h"
+#include"IObserver.h"
 #include"EntityCreator.h"
 
-class Game: public IObsever
+class Game: public IObserver
 {
 public:
 	Game();
@@ -21,9 +21,9 @@ public:
 	static const  int NUMBER_OF_WALL = 10;
 	static const  int MAX_LENGTH_OF_WALL = 10;
 	//game options   chance 1/n
-	static const  int CHANCE_CHANGE_DIRECRION = 2;
-	static const  int CHANCE_ENEMY_MOVE = 2;
-	static const  int CHANCE_SHOOT_ENEMY = 10;
+	
+	static const  int CHANCE_ENEMY_ACTION = 2;
+	
 
 	void startGame();
 	void stopGame();
@@ -40,7 +40,7 @@ public:
 	void gameOver();
 	std::vector<IEntity *> getEntities();
 
-	void handleEvent(Signal sig, IEntity &sender);
+	void handleEvent(Signal sig, Entity &sender);
 
 	~Game();
 
@@ -57,6 +57,7 @@ private:
 	void setCastle_();
 
 	bool isAvailablePosition_(int x, int y, int length, Direction direct);
+	void Game::SetWindow_(int Width, int Height);
 
 	
 	

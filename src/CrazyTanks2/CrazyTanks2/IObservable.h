@@ -1,15 +1,18 @@
 #ifndef IOBSERVABLE_H
 #define IOBSERVABLE_H
 #pragma once
-#include "Game.h"
+#include "IObserver.h"
+
+
+class Entity;
 
 class IObservable
 {
 public:
 	IObservable();
-	virtual void addObserver(Game &o) = 0;
-	virtual void removeObserver(Game &o) = 0;
-	virtual void notifyObservers() = 0;
+	virtual void addObserver(IObserver *o) = 0;
+	virtual void removeObserver(IObserver *o) = 0;
+	virtual void notifyObservers(Signal sig, Entity *ent) = 0;
 	virtual ~IObservable();
 };
 

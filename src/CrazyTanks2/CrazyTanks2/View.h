@@ -4,12 +4,12 @@
 
 #include <windows.h>
 #include <iostream>
-#include"IEntity.h"
+#include"Entity.h"
 
 class View 	
 {
 public:
-	View(IEntity *ent);
+	View(Entity *ent);
 	char getSymbol() ;
 	void setSymbol(char ch);
 	void render();
@@ -18,7 +18,7 @@ public:
 	virtual ~View();
 
 private:
-	IEntity *entity;
+	Entity *entity;
 	char symbol;
 	void setCursorPosition();
 };

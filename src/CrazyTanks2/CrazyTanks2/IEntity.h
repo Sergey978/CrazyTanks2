@@ -4,12 +4,7 @@
 #include "stdafx.h"
 #include <vector>
 #include"Enums.h"
-#include"Body.h"
-#include"Health.h"
-#include"View.h"
-#include"IControl.h"
-#include "IWeapon.h"
-#include"IMovable.h"
+
 
 class Body;
 class Health;
@@ -33,7 +28,7 @@ public:
 	virtual void setHealth(Health *health)  = 0;
 	virtual Health *getHealth() const = 0;
 	virtual void setView(View *view) = 0;
-	virtual View *getview() const  = 0;
+	virtual View *getView() const  = 0;
 	virtual void setControl(IControl *contr) = 0;
 	virtual IControl *getControl() const = 0;
 	virtual void setWeapon(IWeapon *weapon) = 0;

@@ -1,7 +1,7 @@
 #ifndef IENTITYCREATOR_H
 #define IENTITYCREATOR_H
 #pragma once
-#include "IEntity.h"
+#include "Entity.h"
 #include "Enums.h"
 #include"Bullet.h"
 #include"EnemyTank.h"
@@ -15,7 +15,7 @@ class IEntityCreator
 {
 public:
 	
-	virtual IEntity *getEntity(EntityType type)  = 0;
+	virtual Entity *getEntity(EntityType type)  = 0;
 
 	virtual ~IEntityCreator() {}
 	

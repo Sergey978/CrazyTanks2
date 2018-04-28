@@ -2,12 +2,12 @@
 #include "Unmoved.h"
 
 
-Unmoved::Unmoved(IEntity *ent)
+Unmoved::Unmoved(Entity *ent)
 {
 	this->entity = ent;
 }
 
-void Unmoved::move(Direction direct)
+void Unmoved::move()
 {
 	// in Unmove class method move does nothing
 }

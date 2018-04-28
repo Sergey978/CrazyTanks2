@@ -1,15 +1,15 @@
 #ifndef BODY_H
 #define BODY_H
 #include "stdafx.h"
-#include"IEntity.h"
+#include"Entity.h"
 
-class IEntity;
+class Entity;
 
 class Body
 {
 public:
-	Body(IEntity *entity);
-	bool testCollision(IEntity &otherEntity);
+	Body(Entity *entity);
+	bool testCollision(Entity &otherEntity);
 	int getX();
 	void setX(int x);
 	int getY();
@@ -20,7 +20,7 @@ public:
 
 
 private:
-	IEntity *entity;
+	Entity *entity;
 	int x, y;
 	Direction direct;
 

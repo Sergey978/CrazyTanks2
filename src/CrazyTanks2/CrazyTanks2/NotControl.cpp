@@ -4,7 +4,7 @@
 
 
 
-NotControl::NotControl(IEntity * entity)
+NotControl::NotControl(Entity * entity)
 {
 	this->entity = entity;
 }

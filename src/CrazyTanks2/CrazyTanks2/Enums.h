@@ -16,7 +16,7 @@ enum EntityType
 
 enum Command
 {
-	Nothing = 0,  left, right , up , down, shoot, pause 
+	Nothing = 0,  left , right , up , down, shoot, pause 
 
 };
 

@@ -2,17 +2,17 @@
 #ifndef CONTROL_H
 #define CONTROL_H
 #include "Enums.h"
-#include"IEntity.h"
+#include"Entity.h"
 #include"IControl.h"
 
 class PlayerControl: public IControl
 {
 public:
-	PlayerControl(IEntity * entity);
+	PlayerControl(Entity * entity);
 	Command PlayerControl::getCommand();
 	virtual ~PlayerControl();
 private:
-	IEntity * ent;
+	Entity * ent;
 
 };
 

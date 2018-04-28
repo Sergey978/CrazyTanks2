@@ -1,10 +1,19 @@
 #ifndef IEntity_H
 #define IEntity_H
 #pragma once
-#include"IEntity.h"
+#include "IEntity.h"
 #include"Enums.h"
+#include"IObservable.h"
+#include"IObserver.h"
+#include"Body.h"
+#include"Health.h"
+#include"View.h"
+#include "IControl.h"
+#include"IWeapon.h"
+#include"IMovable.h"
 
-class Entity : public IEntity
+
+class Entity : public IEntity, public IObservable
 {
 public:
 	Entity();
@@ -16,10 +25,14 @@ public:
 	Signal getSignal();
 	void setSignal(Signal value);
 
+	void addObserver(IObserver *o);
+	void removeObserver(IObserver *o);
+	void notifyObservers(Signal sig, Entity *entity);
+
 	void setHealth(Health *health);
 	Health *getHealth() const;
 	void setView(View *view);
-	View *getview() const;
+	View *getView() const;
 	void setControl(IControl *contr);
 	IControl *getControl() const;
 	void setWeapon(IWeapon *weapon);
@@ -47,6 +60,7 @@ private:
 	Signal signal;
 	std::vector <IEntity *> targets;
 	std::vector <IEntity *> group;
+	std::vector <IObserver *> observers;
 
 };
 

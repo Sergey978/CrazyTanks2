@@ -2,18 +2,18 @@
 #define BOTCONTROL_H
 #pragma once
 #include "IControl.h"
-#include"IEntity.h"
+#include"Entity.h"
 
 class BotControl :
 	public IControl
 {
 public:
-	BotControl(IEntity * entity);
+	BotControl(Entity * entity);
 	Command getCommand();
 
 	virtual ~BotControl();
 private:
-	IEntity * entity;
+	Entity * entity;
 };
 
 #endif // !BOTCONTROL_H

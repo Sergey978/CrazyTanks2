@@ -2,18 +2,18 @@
 #define UNMOVED_H
 #pragma once
 #include "IMovable.h"
-#include "IEntity.h"
+#include "Entity.h"
 
 class Unmoved :
 	public IMovable
 {
 public:
-	Unmoved(IEntity *ent);
-	void move(Direction direct);
+	Unmoved(Entity *ent);
+	void move();
 	virtual ~Unmoved();
 
 private:
-	IEntity *entity;
+	Entity *entity;
 };
 
 #endif // !UNMOVED_H

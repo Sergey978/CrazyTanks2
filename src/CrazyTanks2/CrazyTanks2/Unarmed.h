@@ -2,18 +2,18 @@
 #define NOWEAUNARMEDPON
 #pragma once
 #include "IWeapon.h"
-#include"IEntity.h"
+#include"Entity.h"
 
 class Unarmed :
 	public IWeapon
 {
 public:
-	Unarmed(IEntity *ent);
+	Unarmed(Entity *ent);
 	void shoot();
 
 	virtual ~Unarmed();
 private:
-	IEntity * entity;
+	Entity * entity;
 };
 
 #endif // !UNARMED

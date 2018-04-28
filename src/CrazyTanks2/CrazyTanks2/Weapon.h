@@ -2,18 +2,18 @@
 #define WEAPON
 #pragma once
 #include "IWeapon.h"
-#include"IEntity.h"
+#include"Entity.h"
 
 class Weapon :
 	public IWeapon
 {
 public:
-	Weapon(IEntity *ent);
+	Weapon(Entity *ent);
 	void shoot();
 
 	~Weapon();
 private:
-	IEntity * entity;
+	Entity * entity;
 };
 
 #endif // !WEAPON

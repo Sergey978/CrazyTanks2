@@ -160,7 +160,7 @@
     <ClInclude Include="IEntityCreator.h" />
     <ClInclude Include="IMovable.h" />
     <ClInclude Include="IObservable.h" />
-    <ClInclude Include="IObsever.h" />
+    <ClInclude Include="IObserver.h" />
     <ClInclude Include="IWeapon.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="stdafx.h" />
@@ -188,7 +188,7 @@
     <ClCompile Include="IEntity.cpp" />
     <ClCompile Include="IMovable.cpp" />
     <ClCompile Include="IObservable.cpp" />
-    <ClCompile Include="IObsever.cpp" />
+    <ClCompile Include="IObserver.cpp" />
     <ClCompile Include="CrazyTanks.cpp" />
     <ClCompile Include="IWeapon.cpp" />
     <ClCompile Include="Physics.cpp" />

@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "EntityCreator.h"
-#
+
 
 
 EntityCreator::EntityCreator()
 {
 }
 
-IEntity *EntityCreator::getEntity(EntityType entName)
+Entity *EntityCreator::getEntity(EntityType entName)
 {
 
 	switch (entName)

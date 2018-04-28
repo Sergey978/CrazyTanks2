@@ -48,6 +48,12 @@ void Game::startGame() {
 
 	HANDLE hOut;
 	COORD Position;
+	
+	SetWindow_(80, 40);
+
+hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+
 	for (int x = 0; x < FIELD_WIDTH + 2; x++)
 	{
 		for (int y = 0; y < FIELD_LENGTH + 2; y++)
@@ -55,8 +61,6 @@ void Game::startGame() {
 			if (x == 0 || y == 0 || x == FIELD_WIDTH + 1 || y == FIELD_LENGTH + 1)
 			{
 
-
-				hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 				Position.X = x;
 				Position.Y = y;
 
@@ -73,14 +77,18 @@ void Game::startGame() {
 
 	setWalls_();
 
-	IEntity *playerTank = EntityCreator::getEntity(EntityType::TankInst);
+	Entity *playerTank = EntityCreator::getEntity(EntityType::TankInst);
+	playerTank->addObserver(this);
+
 	playerTank->setGroup(players);
+	
 	players.push_back(playerTank);
 	addEntity(*playerTank);
 	playerTank->getBody()->setX(5);
 	playerTank->getBody()->setY(5);
 
-	EnemyTank *enemyT = new EnemyTank;
+	Entity *enemyT = EntityCreator::getEntity(EntityType::EnemyTankInst);
+	enemyT->addObserver(this);
 
 	enemyT->getBody()->setX(20);
 	enemyT->getBody()->setY(20);
@@ -90,7 +98,6 @@ void Game::startGame() {
 	update();
 	render();
 }
-
 
 
 void Game::addEntity(IEntity &entity) {
@@ -114,8 +121,19 @@ std::vector<IEntity*> Game::getEntities()
 	return entities;
 }
 
-void Game::handleEvent(Signal sig, IEntity & sender)
+void Game::handleEvent(Signal sig, Entity & sender)
 {
+	switch (sig)
+	{
+	case Signal::CreateEntity:
+	{
+
+	}
+	default:
+	{
+
+	}
+	}
 }
 
 
@@ -168,14 +186,13 @@ void Game::setWalls_()
 			{
 				for (int y = newCoord.Y; y <= y2; y++)
 				{
-					IEntity *wall = EntityCreator::getEntity(EntityType::WallInst);
+					Entity *wall = EntityCreator::getEntity(EntityType::WallInst);
+					wall->addObserver(this);
 					wall->getBody()->setX(x);
 					wall->getBody()->setY(y);
 					neutral.push_back(wall);
 					wall->setGroup(neutral);
 					addEntity(*wall);
-
-					
 
 				}
 
@@ -191,7 +208,8 @@ void Game::setWalls_()
 void Game::setCastle_()
 {
 	//set gold
-	IEntity *gold = EntityCreator::getEntity(EntityType::GoldInst);
+	Entity *gold = EntityCreator::getEntity(EntityType::GoldInst);
+	gold->addObserver(this);
 	int x = Game::FIELD_WIDTH / 2;
 	int y = Game::FIELD_LENGTH - 1;
 	gold->getBody()->setX(x);
@@ -209,7 +227,8 @@ void Game::setCastle_()
 			{
 				continue;
 			}
-			IEntity *wall = EntityCreator::getEntity(EntityType::WallInst);
+			Entity *wall = EntityCreator::getEntity(EntityType::WallInst);
+			wall->addObserver(this);
 			wall->getBody()->setX(xw);
 			wall->getBody()->setY(yw);
 			neutral.push_back(wall);
@@ -272,6 +291,23 @@ bool Game::isAvailablePosition_(int x, int y, int length, Direction direct )
 
 	return true;
 
+}
+
+void Game::SetWindow_(int Width, int Height)
+{
+	_COORD coord;
+	coord.X = Width;
+	coord.Y = Height;
+
+	_SMALL_RECT Rect;
+	Rect.Top = 0;
+	Rect.Left = 0;
+	Rect.Bottom = Height - 1;
+	Rect.Right = Width - 1;
+
+	HANDLE Handle = GetStdHandle(STD_OUTPUT_HANDLE);      // Get Handle 
+	SetConsoleScreenBufferSize(Handle, coord);            // Set Buffer Size 
+	SetConsoleWindowInfo(Handle, TRUE, &Rect);            // Set Window Size 
 }
 
 Game::~Game()

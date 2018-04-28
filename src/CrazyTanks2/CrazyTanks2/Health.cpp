@@ -3,7 +3,7 @@
 
 
 
-Health::Health(IEntity * ent)
+Health::Health(Entity * ent)
 {
 	entity = ent;
 }

@@ -1,33 +1,40 @@
 #include "stdafx.h"
 #include "Physics.h"
+#include"Game.h"
 
 
-Physics::Physics(IEntity * ent)
+Physics::Physics(Entity * ent)
 {
 	this->entity = ent;
 }
 
-void Physics::move(Direction direct)
+void Physics::move()
 {
 	int curX_, curY_ ; //current x, y
 	curX_ = entity->getBody()->getX();
 	curY_ = entity->getBody()->getY();
-	
+	Direction direct = entity->getBody()->getDirection();
 
 	switch (direct)
 	{
 	case Direction::Left:
 	{
+		if (curX_ > 1)
+		{
+			entity->getBody()->setX(--curX_);
+		}
 		
-		entity->getBody()->setX(--curX_);
 		break;
 
 	}
 
 	case Direction::Right:
 	{
+		if (curX_ < Game::FIELD_WIDTH )
+		{
+			entity->getBody()->setX(++curX_);
+		}
 		
-		entity->getBody()->setX(++curX_);
 		break;
 
 	}
@@ -35,14 +42,22 @@ void Physics::move(Direction direct)
 	case Direction::Up:
 	{
 		 
-		entity->getBody()->setY(--curY_);
+		if (curY_ > 1)
+		{
+			entity->getBody()->setY(--curY_);
+		}
+
 		break;
 
 	}
 
 	case Direction::Down:
 	{
-		entity->getBody()->setY(++curY_);
+		
+		if (curY_ < Game::FIELD_LENGTH )
+		{
+			entity->getBody()->setY(++curY_);
+		}
 		break;
 
 	}
