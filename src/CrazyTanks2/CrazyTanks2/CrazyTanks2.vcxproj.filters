@@ -69,9 +69,6 @@
     <ClInclude Include="Health.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IObservable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -94,9 +91,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Unmoved.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

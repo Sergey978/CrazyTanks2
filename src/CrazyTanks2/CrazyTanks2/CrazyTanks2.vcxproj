@@ -159,8 +159,6 @@
     <ClInclude Include="IEntity.h" />
     <ClInclude Include="IEntityCreator.h" />
     <ClInclude Include="IMovable.h" />
-    <ClInclude Include="IObservable.h" />
-    <ClInclude Include="IObserver.h" />
     <ClInclude Include="IWeapon.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="stdafx.h" />

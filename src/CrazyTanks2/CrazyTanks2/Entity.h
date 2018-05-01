@@ -12,6 +12,7 @@
 #include"IWeapon.h"
 #include"IMovable.h"
 
+class Game;
 
 class Entity : public IEntity, public IObservable
 {
@@ -25,9 +26,9 @@ public:
 	Signal getSignal();
 	void setSignal(Signal value);
 
-	void addObserver(IObserver *o);
-	void removeObserver(IObserver *o);
-	void notifyObservers(Signal sig, Entity *entity);
+	void addObserver(IObserver *o) override;
+	void removeObserver(IObserver *o) override;
+	void notifyObservers() override;
 
 	void setHealth(Health *health);
 	Health *getHealth() const;
@@ -39,6 +40,8 @@ public:
 	IWeapon *getWeapon() const;
 	void setPhysics(IMovable *physics);
 	IMovable *getPhysics() const;
+	Entity *getCreatedEntity() const;
+	void   setCreatedEntity(Entity *ent);
 
 	void setType(EntityType t);
 	EntityType getType();
@@ -58,6 +61,8 @@ private:
 
 	EntityType type;
 	Signal signal;
+
+	Entity * createdEntity;
 	std::vector <IEntity *> targets;
 	std::vector <IEntity *> group;
 	std::vector <IObserver *> observers;

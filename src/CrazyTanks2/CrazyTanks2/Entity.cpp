@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include"Entity.h"
+#include"Game.h"
 
 
 
@@ -133,12 +134,21 @@ void Entity::removeObserver(IObserver *o)
 	
 }
 
-void Entity::notifyObservers( Signal sig ,  Entity *entity)
+void Entity::notifyObservers()
 {
-	for each (IObserver *obs in observers)
+	
+	
+	std::vector<IObserver *>::iterator iter;
+
+	iter = observers.begin();
+	while (iter != observers.end())
 	{
-		obs->handleEvent(sig, *entity);
+		(*iter)->handleEvent(signal, createdEntity);
+		iter++;
 	}
+		
+	
+	
 }
 
 void Entity::setHealth(Health * health)
@@ -189,6 +199,16 @@ void Entity::setPhysics(IMovable * physics)
 IMovable *Entity::getPhysics() const
 {
 	return physics;
+}
+
+Entity * Entity::getCreatedEntity() const
+{
+	return this->createdEntity;
+}
+
+void Entity::setCreatedEntity(Entity * ent)
+{
+	this->createdEntity = ent;
 }
 
 void Entity::setType(EntityType t)

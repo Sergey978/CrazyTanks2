@@ -83,7 +83,7 @@ hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	playerTank->setGroup(players);
 	
 	players.push_back(playerTank);
-	addEntity(*playerTank);
+	addEntity(playerTank);
 	playerTank->getBody()->setX(5);
 	playerTank->getBody()->setY(5);
 
@@ -93,18 +93,18 @@ hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	enemyT->getBody()->setX(20);
 	enemyT->getBody()->setY(20);
 	enemies.push_back(enemyT);
-	addEntity(*enemyT);
+	addEntity(enemyT);
 
 	update();
 	render();
 }
 
 
-void Game::addEntity(IEntity &entity) {
-	entities.push_back(&entity);
+void Game::addEntity(IEntity *entity) {
+	entities.push_back(entity);
 }
 
-void Game::onEntityDestroyed(Entity &entity) {
+void Game::onEntityDestroyed(Entity *entity) {
 	// remove destroyed entity
 }
 
@@ -121,12 +121,18 @@ std::vector<IEntity*> Game::getEntities()
 	return entities;
 }
 
-void Game::handleEvent(Signal sig, Entity & sender)
+void Game::handleEvent(Signal sig, Entity *sender)
 {
+	
+	
+	
 	switch (sig)
 	{
 	case Signal::CreateEntity:
 	{
+		sender->addObserver(this);
+
+ 	  entities.push_back(sender);
 
 	}
 	default:
@@ -134,6 +140,10 @@ void Game::handleEvent(Signal sig, Entity & sender)
 
 	}
 	}
+	
+	
+	
+	
 }
 
 
@@ -192,7 +202,7 @@ void Game::setWalls_()
 					wall->getBody()->setY(y);
 					neutral.push_back(wall);
 					wall->setGroup(neutral);
-					addEntity(*wall);
+					addEntity(wall);
 
 				}
 
@@ -216,7 +226,7 @@ void Game::setCastle_()
 	gold->getBody()->setY(y);
 	players.push_back(gold);
 	gold->setGroup(players);
-	addEntity(*gold);
+	addEntity(gold);
 
 	//set walls of castle
 	for (int xw = x - 1; xw <= x + 1; xw++)
@@ -233,7 +243,7 @@ void Game::setCastle_()
 			wall->getBody()->setY(yw);
 			neutral.push_back(wall);
 			wall->setGroup(neutral);
-			addEntity(*wall);
+			addEntity(wall);
 
 
 		}

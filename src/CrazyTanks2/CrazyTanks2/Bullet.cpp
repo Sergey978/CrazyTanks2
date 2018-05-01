@@ -9,7 +9,7 @@ Bullet::Bullet()
 {
 	
 	Body *body = new Body(this);
-	body->setDirection(Up);
+	
 	setBody(body);
 
 
@@ -22,6 +22,7 @@ Bullet::Bullet()
 	view->setSymbol('o');
 	setView(view);
 
+	setType(EntityType::BulletInst);
 
 	setControl(new NotControl(this));
 	setWeapon(new Unarmed(this));
@@ -32,7 +33,7 @@ Bullet::Bullet()
 
 void Bullet::update()
 {
-	
+	Entity::update();
 
 }
 

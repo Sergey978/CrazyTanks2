@@ -11,9 +11,10 @@ public:
 	Weapon(Entity *ent);
 	void shoot();
 
+
 	~Weapon();
 private:
 	Entity * entity;
-};
+	};
 
 #endif // !WEAPON

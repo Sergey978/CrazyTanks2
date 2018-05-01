@@ -34,13 +34,13 @@ public:
 	void update();
 	void render();
 	
-	void addEntity(IEntity &entity);
-	void onEntityDestroyed(Entity &entity);
+	void addEntity(IEntity *entity);
+	void onEntityDestroyed(Entity *entity);
 	void onPlayerDestroyed();
 	void gameOver();
 	std::vector<IEntity *> getEntities();
 
-	void handleEvent(Signal sig, Entity &sender);
+	void handleEvent(Signal sig, Entity *sender);
 
 	~Game();
 
