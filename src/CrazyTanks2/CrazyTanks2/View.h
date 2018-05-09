@@ -12,6 +12,7 @@ public:
 	View(Entity *ent);
 	char getSymbol() ;
 	void setSymbol(char ch);
+	void setColor(int choosecolor);
 	void render();
 	void clear();
 	
@@ -20,7 +21,12 @@ public:
 private:
 	Entity *entity;
 	char symbol;
+	int color_;
 	void setCursorPosition();
+	
+	void choseColor_(int choosecolor);
+
+	void forgetColor_();
 };
 
 #endif // !IVIEW_H

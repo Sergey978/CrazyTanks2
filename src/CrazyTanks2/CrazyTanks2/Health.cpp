@@ -10,12 +10,18 @@ Health::Health(Entity * ent)
 
 void Health::hit(int damage)
 {
+
+
 	if (damage > hitPoints)
 		hitPoints = 0;
 	else
 	{
 		hitPoints -= damage;
 	}
+
+
+	entity->notifyObservers(Signal::HitEntity, entity);
+
 	if (hitPoints == 0)
 	{
 		entity->destroy();

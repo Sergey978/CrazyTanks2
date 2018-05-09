@@ -12,11 +12,11 @@ int main()
 	Game game;
 
 	game.startGame();
-	while (1)
+	while (!game.getIsPause())
 	{
 		game.update();
 		game.render();
-		Sleep(50);
+		Sleep(20);
 
 	}
 

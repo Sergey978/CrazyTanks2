@@ -20,7 +20,8 @@ Wall::Wall()
 
 
 	View *view = new View(this);
-	view->setSymbol('1');
+	view->setSymbol(char(219));
+	view->setColor(8);
 	setView(view);
 
 

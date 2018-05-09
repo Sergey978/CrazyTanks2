@@ -43,13 +43,12 @@ public:
 	IWeapon *getWeapon() const;
 	void setPhysics(IMovable *physics);
 	IMovable *getPhysics() const;
-
 	void setType(EntityType t);
 	EntityType getType();
 	std::vector<Group> getTargets();
 	void setTargets(std::vector<Group > &value);	
 
-	virtual ~Entity() { delete body; delete view; delete health; delete weapon; delete physics; };
+	virtual ~Entity() {   delete weapon; delete physics; };
 private:
 	int id;
 	static int lastId;

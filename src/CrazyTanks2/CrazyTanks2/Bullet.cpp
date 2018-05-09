@@ -13,7 +13,6 @@ Bullet::Bullet()
 	body->setDamage(1);
 	setBody(body);
 
-
 	Health *health = new Health(this);
 	health->setHitPoints(1);
 	setHealth(health);
@@ -21,6 +20,7 @@ Bullet::Bullet()
 
 	View *view = new View(this);
 	view->setSymbol('o');
+	view->setColor(15);
 	setView(view);
 
 

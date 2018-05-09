@@ -28,6 +28,7 @@ enum Group
 enum Signal
 {
 	CreateEntity,
-	DestroyEntity
+	DestroyEntity,
+	HitEntity
 };
 #endif // !ENUMS_H

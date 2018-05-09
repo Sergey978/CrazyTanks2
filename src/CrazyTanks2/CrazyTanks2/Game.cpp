@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
+#include "String"
+
 
 Game::Game()
 {
@@ -8,7 +10,18 @@ Game::Game()
 void Game::stopGame() {
 }
 
+void Game::setIsPause(bool val)
+{
+	isPause_ = val;
+}
+
+bool Game::getIsPause()
+{
+	return isPause_;
+}
+
 void Game::update() {
+
 
 	seconds_ = (clock() / 1000) % 60;
 	minutes_ = (clock() / 1000) / 60;
@@ -21,10 +34,14 @@ void Game::update() {
 	std::map<int, Entity *>::iterator it2;
 	for (it = entities.begin(); it != entities.end(); it++)
 	{
+
+
 		oldX_ = it->second->getBody()->getX();
 		oldY_ = it->second->getBody()->getY();
 
 		it->second->update();
+
+
 
 		//testCollision with other Entities
 		bool isCollision = false;
@@ -60,7 +77,11 @@ void Game::update() {
 			it->second->getBody()->setX(oldX_);
 			it->second->getBody()->setY(oldY_);
 		}
+
 	}
+
+
+
 
 
 	//add new entities in map
@@ -98,20 +119,21 @@ void Game::startGame() {
 
 	drawBorders_();
 	setCastle_();
-	setWalls_();
 
 	Entity *playerTank = EntityCreator::getEntity(EntityType::TankInst);
 	playerTank->addObserver(this);
 	playerTank->setGroup(Group::Players);
 	playerTank->setTargets(std::vector<Group>{ Group::Enemies, Group::Neutrals });
+	playerTank->getHealth()->setHitPoints(playerLife_);
 
 	addEntity(*playerTank);
-	playerTank->getBody()->setX(5);
-	playerTank->getBody()->setY(5);
+	playerTank->getBody()->setX(Game::FIELD_WIDTH / 2);
+	playerTank->getBody()->setY(Game::FIELD_LENGTH - 3);
 
 	//set enemy tanks
 	setEnemies_();
 
+	setWalls_();
 
 	update();
 	render();
@@ -125,16 +147,44 @@ void Game::onEntityDestroyed(Entity &entity) {
 
 	//add  id of entities which destryed to vector 
 	entity.getView()->clear();
+	EntityType etp_ = entity.getType();
+
+	if (etp_ == EntityType::EnemyTankInst)
+	{
+		score_++;
+		enemyTanks_--;
+	}
+	//lose
+	if (etp_ == EntityType::TankInst || etp_ == EntityType::GoldInst)
+	{
+		isWin_ = false;
+		gameOver();
+	}
+	//win
+	if (enemyTanks_ == 0)
+	{
+		isWin_ = true;
+		gameOver();
+	}
+
+
 	diedEntityId.push_back(entity.getId());
-
-}
-
-void Game::onPlayerDestroyed()
-{
 }
 
 void Game::gameOver()
 {
+	if (isWin_ == true)
+	{
+		message_ = "  Game OVER!  YOU WIN !!!";
+		isPause_ = true;
+		drawMessage_();
+	}
+	else if (isWin_ == false)
+	{
+		message_ = " Game OVER! YOU LOSE !!!";
+		isPause_ = true;
+		drawMessage_();
+	}
 }
 
 bool Game::checkIsTarget(std::vector<Group> Targets, Group entityTarget)
@@ -175,6 +225,11 @@ void Game::handleEvent(Signal sig, Entity & sender)
 		break;
 
 	}
+	case Signal::HitEntity:
+		if (sender.getEntityType() == EntityType::TankInst)
+		{
+			playerLife_ = sender.getHealth()->getHitpoints();
+		}
 
 	default:
 	{
@@ -243,7 +298,7 @@ void Game::setEnemies_()
 {
 	int enemyNumb_ = 0; // current generated number of walls
 
-	while (enemyNumb_ <= NUMBER_OF_ENEMY)
+	while (enemyNumb_ < NUMBER_OF_ENEMY)
 	{
 
 		Direction direct = static_cast <Direction>(rand() % 2);
@@ -258,7 +313,7 @@ void Game::setEnemies_()
 			enemyT->getBody()->setY(newCoord.Y);
 			enemyT->setGroup(Group::Enemies);
 			enemyT->setTargets(std::vector<Group>{ Group::Players, Group::Neutrals });
-			addEntity(*enemyT);						
+			addEntity(*enemyT);
 			enemyNumb_++;
 		}
 
@@ -273,6 +328,9 @@ void Game::setCastle_()
 	gold->addObserver(this);
 	int x = Game::FIELD_WIDTH / 2;
 	int y = Game::FIELD_LENGTH - 1;
+
+
+	gold->getHealth()->setHitPoints(1);
 	gold->getBody()->setX(x);
 	gold->getBody()->setY(y);
 	gold->setGroup(Group::Players);
@@ -404,7 +462,7 @@ void Game::drawBorders_()
 	HANDLE hOut;
 	COORD Position;
 
-	SetWindow_(80, 40);
+	SetWindow_(80, 60);
 
 	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -436,7 +494,7 @@ void Game::drawParamsGame()
 	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	Position.X = Game::FIELD_WIDTH + 5;
-	Position.Y = Game::FIELD_LENGTH /2 - 5;
+	Position.Y = Game::FIELD_LENGTH / 2 - 5;
 	SetConsoleCursorPosition(hOut, Position);
 
 	std::cout << " Lives   " << playerLife_ << std::endl;
@@ -449,13 +507,22 @@ void Game::drawParamsGame()
 	Position.Y = Game::FIELD_LENGTH / 2 - 1;
 
 	SetConsoleCursorPosition(hOut, Position);
-	std::cout << " Score   " << score_ << std::endl;
-
-	Position.Y = Game::FIELD_LENGTH / 2 + 1;
-
-	SetConsoleCursorPosition(hOut, Position);
 
 	std::cout << " Time   " << minutes_ << " : " << seconds_ << ' ' << std::endl;
+}
+
+void Game::drawMessage_() {
+
+	HANDLE hOut;
+	COORD Position;
+	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	Position.X = Game::FIELD_WIDTH + 5;
+	Position.Y = Game::FIELD_LENGTH / 2 + 10;
+	SetConsoleCursorPosition(hOut, Position);
+
+	std::cout << message_ << std::endl;
+
 }
 
 Game::~Game()

@@ -18,7 +18,8 @@ EnemyTank::EnemyTank()
 
 
 	View *view = new View(this);
-	view->setSymbol('E');
+	view->setSymbol(char(219));
+	view->setColor(11);
 	setView(view);
 
 
