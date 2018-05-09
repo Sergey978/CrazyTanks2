@@ -4,6 +4,7 @@
 
 Tank::Tank()
 {
+	setType(EntityType::TankInst);
 	Body *body = new Body(this);
 	body->setDirection(Up);
 	setBody(body);

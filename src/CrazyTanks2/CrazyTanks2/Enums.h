@@ -20,6 +20,11 @@ enum Command
 
 };
 
+enum Group
+{
+	Players, Enemies, Neutrals
+};
+
 enum Signal
 {
 	CreateEntity,

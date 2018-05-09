@@ -7,9 +7,10 @@
 
 Bullet::Bullet()
 {
-	
+	setType( EntityType::BulletInst);
 	Body *body = new Body(this);
-	
+	body->setDirection(Up);
+	body->setDamage(1);
 	setBody(body);
 
 
@@ -22,7 +23,6 @@ Bullet::Bullet()
 	view->setSymbol('o');
 	setView(view);
 
-	setType(EntityType::BulletInst);
 
 	setControl(new NotControl(this));
 	setWeapon(new Unarmed(this));
@@ -33,7 +33,28 @@ Bullet::Bullet()
 
 void Bullet::update()
 {
-	Entity::update();
+	getView()->clear();
+	int oldX_ = this->getBody()->getX();
+	int	oldY_ = this->getBody()->getY();
+
+	getPhysics()->move();
+
+	//testCollision with other Entities
+	bool isCollision = false;
+		
+		
+	// if border of field
+	if (oldX_ == getBody()->getX() && oldY_ == getBody()->getY())
+	{
+		isCollision = true;
+	}
+
+	if (isCollision)
+	{
+		notifyObservers(Signal::DestroyEntity, this);
+	}
+
+
 
 }
 

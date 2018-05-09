@@ -1,18 +1,24 @@
 #include "stdafx.h"
 #include"Entity.h"
-#include"Game.h"
+#include<map>
 
-
-
-
+int Entity::lastId = 0;
 
 Entity::Entity()
 {
 	body = new Body(this);
+	id = lastId;
+	Entity::lastId++;
+}
+
+int Entity::getId()
+{
+	return id;
 }
 
 void Entity::destroy()
 {
+	notifyObservers(Signal::DestroyEntity, this);
 }
 
 void Entity::update()
@@ -46,6 +52,7 @@ void Entity::update()
 	case Command::shoot:
 	{
 		weapon->shoot();
+		return;
 	}
 
 
@@ -53,48 +60,14 @@ void Entity::update()
 		break;
 	}
 
-	int oldX_ = this->getBody()->getX();
-	int	oldY_ = this->getBody()->getY();
-
 	
 
-	if (command != Nothing )
+	if (command != Nothing)
 	{
 		physics->move();
 
 	}
 
-
-
-
-	//testCollision with other Entities
-	bool isCollision = false;
-
-	std::vector<IEntity *> otherEntities;
-	otherEntities = getTargets();
-	std::vector<IEntity *> group = getGroup();
-	otherEntities.insert(otherEntities.end(), group.begin(), group.end());
-
-	for each (Entity *ent in otherEntities)
-	{
-		//skip check colision with yourself
-		if (ent != this)
-		{
-			if (getBody()->testCollision(*ent))
-			{
-				isCollision = true;
-			}
-
-		}
-
-	}
-
-	if (isCollision)
-	{
-		body->setX(oldX_);
-		body->setY(oldY_);
-	}
-	
 
 }
 
@@ -115,40 +88,20 @@ void Entity::setBody(Body *value_)
 	body = value_;
 }
 
-Signal Entity::getSignal()
-{
-	return Signal();
-}
-
-void Entity::setSignal(Signal value)
-{
-}
 
 void Entity::addObserver(IObserver *o)
 {
-	observers.push_back(o);
+	observer = o;
 }
 
 void Entity::removeObserver(IObserver *o)
 {
-	
+
 }
 
-void Entity::notifyObservers()
+void Entity::notifyObservers(Signal sig, Entity *entity)
 {
-	
-	
-	std::vector<IObserver *>::iterator iter;
-
-	iter = observers.begin();
-	while (iter != observers.end())
-	{
-		(*iter)->handleEvent(signal, createdEntity);
-		iter++;
-	}
-		
-	
-	
+	observer->handleEvent(sig, *entity);
 }
 
 void Entity::setHealth(Health * health)
@@ -201,16 +154,6 @@ IMovable *Entity::getPhysics() const
 	return physics;
 }
 
-Entity * Entity::getCreatedEntity() const
-{
-	return this->createdEntity;
-}
-
-void Entity::setCreatedEntity(Entity * ent)
-{
-	this->createdEntity = ent;
-}
-
 void Entity::setType(EntityType t)
 {
 	type = t;
@@ -221,27 +164,28 @@ EntityType Entity::getType()
 	return type;
 }
 
-std::vector<IEntity *> Entity::getTargets()
+std::vector<Group> Entity::getTargets()
 {
 	return targets;
 }
 
-void Entity::setTargets(std::vector<IEntity *> value)
+void Entity::setTargets(std::vector<Group > &value)
 {
 	targets = value;
 }
 
-std::vector<IEntity*> Entity::getGroup()
+Group Entity::getGroup()
 {
 	return group;
 }
 
-void Entity::setGroup(std::vector<IEntity*> value)
+EntityType Entity::getEntityType()
 {
-	group = value;
+	return type;;
 }
 
-Entity::~Entity()
+void Entity::setGroup(Group value)
 {
+	group = value;
 }
 

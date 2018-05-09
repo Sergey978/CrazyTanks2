@@ -7,6 +7,7 @@
 
 EnemyTank::EnemyTank()
 {
+	setType(EntityType::EnemyTankInst);
 	Body *body = new Body(this);
 	body->setDirection(Up);
 	setBody(body);
@@ -30,12 +31,9 @@ EnemyTank::EnemyTank()
 
 void EnemyTank::update()
 {
+	getView()->clear();
 	
-	
-		getView()->clear();
-		Entity::update();
-	
-
+	Entity::update();
 
 }
 

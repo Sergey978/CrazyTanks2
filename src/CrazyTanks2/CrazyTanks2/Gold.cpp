@@ -5,6 +5,7 @@
 
 Gold::Gold()
 {
+	setType(EntityType::GoldInst);
 	Body *body = new Body(this);
 	
 	body->setDirection(Up);

@@ -12,23 +12,16 @@ Weapon::Weapon(Entity * ent)
 
 void Weapon::shoot()
 {
-	Entity bullet = *EntityCreator::getEntity(BulletInst);
-	std::vector<IEntity *> targets = entity->getTargets();
-	bullet.setTargets(targets);
-	std::vector<IEntity *> group = entity->getGroup();
-	bullet.setGroup(group);
+	Entity *bullet =  EntityCreator::getEntity(BulletInst);
+	
+	bullet->setTargets(entity->getTargets());
+	bullet->setGroup(entity->getGroup());
 
-	bullet.getBody()->setX(entity->getBody()->getX());
-	bullet.getBody()->setY(entity->getBody()->getY());
-	bullet.getBody()->setDirection(entity->getBody()->getDirection());
-
-	entity->setSignal(Signal::CreateEntity);
-	entity->setCreatedEntity(&bullet);
-
-	entity->notifyObservers();
-
-
-
+	bullet->getBody()->setX(entity->getBody()->getX());
+	bullet->getBody()->setY(entity->getBody()->getY());
+	bullet->getBody()->setDirection(entity->getBody()->getDirection());
+	entity->notifyObservers(Signal::CreateEntity, bullet);
+	
 }
 
 Weapon::~Weapon()

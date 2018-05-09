@@ -35,11 +35,7 @@ public:
 	virtual IWeapon *getWeapon() const  = 0;
 	virtual void setPhysics(IMovable *physics) = 0;
 	virtual IMovable *getPhysics() const = 0;
-
-	virtual std::vector<IEntity *> getTargets() = 0;
-	virtual void setTargets(std::vector<IEntity *> value) = 0;
-	virtual std::vector<IEntity *> getGroup() = 0;
-	virtual void setGroup(std::vector<IEntity *> value) = 0;
+	
 	virtual void setType(EntityType t) = 0;
 	virtual EntityType getType() = 0;
 

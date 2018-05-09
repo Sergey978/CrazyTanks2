@@ -9,6 +9,8 @@
 #include <windows.h>
 #include"IObserver.h"
 #include"EntityCreator.h"
+#include <map>
+#include <ctime>
 
 class Game: public IObserver
 {
@@ -20,47 +22,48 @@ public:
 	static const  int NUMBER_OF_ENEMY = 5;
 	static const  int NUMBER_OF_WALL = 10;
 	static const  int MAX_LENGTH_OF_WALL = 10;
-	//game options   chance 1/n
-	
+	//game options   chance 1/n	
 	static const  int CHANCE_ENEMY_ACTION = 2;
 	
-
 	void startGame();
 	void stopGame();
-	
-	void setPlayers(std::vector<IEntity *> players);
-	std::vector<IEntity *> getPlayers();
-	
+		
 	void update();
 	void render();
 	
-	void addEntity(IEntity *entity);
-	void onEntityDestroyed(Entity *entity);
+	void addEntity(Entity &entity);
+	void onEntityDestroyed(Entity &entity);
 	void onPlayerDestroyed();
 	void gameOver();
-	std::vector<IEntity *> getEntities();
-
-	void handleEvent(Signal sig, Entity *sender);
+	bool checkIsTarget(std::vector<Group> Targets, Group entityTarget);
+	std::map<int, Entity *> getEntities();
+	void handleEvent(Signal sig, Entity &sender);
 
 	~Game();
 
 private:
-	std::vector<IEntity *> entities;
-	std::vector<IEntity *> players;
-	std::vector<IEntity *> enemies;
-	std::vector<IEntity *> neutral;
+	int playerLife_;
+	int  score_, minutes_, seconds_;
 
+	std::map<int, Entity *> entities;
+	std::vector<Entity *> newEntities;
+	std::vector<int > diedEntityId;
+	
 	COORD genPosition(int maxX, int maxY);
 	bool exit_ = false;
 
 	void setWalls_();
+	void setEnemies_();
 	void setCastle_();
 
 	bool isAvailablePosition_(int x, int y, int length, Direction direct);
+	bool isAvailableArea_(int x, int y, int distance);
 	void Game::SetWindow_(int Width, int Height);
 
-	
-	
+	void drawBorders_();
+
+	void drawParamsGame();
+
 };
 
 

@@ -46,6 +46,24 @@ void Body::setY(int y_)
 	y = y_;
 }
 
+void Body::setDamage(int dmg)
+{
+	damage = dmg;
+}
+
+int Body::getDamage()
+{
+	return damage;
+}
+
+void Body::collisionAct(Entity & otherEntity)
+{
+	if (otherEntity.getHealth())
+	{
+		otherEntity.getHealth()->hit(damage);
+	}
+}
+
 
 
 Direction Body::getDirection()

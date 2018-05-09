@@ -8,6 +8,7 @@
 
 Wall::Wall()
 {
+	setType(EntityType::WallInst);
 	Body *body = new Body(this);
 	body->setDirection(Up);
 	setBody(body);

@@ -16,6 +16,10 @@ void Health::hit(int damage)
 	{
 		hitPoints -= damage;
 	}
+	if (hitPoints == 0)
+	{
+		entity->destroy();
+	}
 }
 
 void Health::setHitPoints(int points)

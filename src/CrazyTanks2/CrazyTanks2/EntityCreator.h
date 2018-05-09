@@ -10,7 +10,6 @@ public:
 	EntityCreator();
 	static Entity *getEntity(EntityType type);
 	
-
 	virtual ~EntityCreator();
 };
 #endif // !ENTITY_CREATOR_H

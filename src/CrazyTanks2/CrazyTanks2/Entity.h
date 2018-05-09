@@ -12,23 +12,26 @@
 #include"IWeapon.h"
 #include"IMovable.h"
 
-class Game;
 
 class Entity : public IEntity, public IObservable
 {
 public:
 	Entity();
+	int getId();
 	void destroy();
 	void update();
 	void render();
+
+	EntityType getEntityType();
+	void setGroup(Group group);
+	Group getGroup();
+
 	Body *getBody() const;
 	void setBody(Body *value);
-	Signal getSignal();
-	void setSignal(Signal value);
-
-	void addObserver(IObserver *o) override;
-	void removeObserver(IObserver *o) override;
-	void notifyObservers() override;
+	
+	void addObserver(IObserver *o);
+	void removeObserver(IObserver *o);
+	void notifyObservers(Signal sig, Entity *entity);
 
 	void setHealth(Health *health);
 	Health *getHealth() const;
@@ -40,32 +43,28 @@ public:
 	IWeapon *getWeapon() const;
 	void setPhysics(IMovable *physics);
 	IMovable *getPhysics() const;
-	Entity *getCreatedEntity() const;
-	void   setCreatedEntity(Entity *ent);
 
 	void setType(EntityType t);
 	EntityType getType();
-	std::vector<IEntity *> getTargets();
-	void setTargets(std::vector<IEntity *> value);
-	std::vector<IEntity *> getGroup();
-	void setGroup(std::vector<IEntity *> value);
+	std::vector<Group> getTargets();
+	void setTargets(std::vector<Group > &value);	
 
-	virtual ~Entity();
+	virtual ~Entity() { delete body; delete view; delete health; delete weapon; delete physics; };
 private:
+	int id;
+	static int lastId;
+	EntityType type;
+
 	Body *body;
 	Health *health;
 	View *view;
 	IControl *control;
 	IWeapon *weapon;
 	IMovable *physics;
-
-	EntityType type;
-	Signal signal;
-
-	Entity * createdEntity;
-	std::vector <IEntity *> targets;
-	std::vector <IEntity *> group;
-	std::vector <IObserver *> observers;
+		
+	std::vector <Group> targets;
+	Group group;
+	IObserver * observer;
 
 };
 
