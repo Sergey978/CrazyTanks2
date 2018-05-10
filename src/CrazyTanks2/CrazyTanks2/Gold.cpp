@@ -26,11 +26,6 @@ void Gold::update()
 {
 }
 
-void Gold::onDied()
-{
-}
-
-
 Gold::~Gold()
 {
 }

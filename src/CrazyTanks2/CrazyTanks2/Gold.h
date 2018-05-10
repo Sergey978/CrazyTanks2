@@ -10,7 +10,6 @@ class Gold :
 public:
 	Gold();
 	void update();
-	void onDied();
 	virtual ~Gold();
 
 private:

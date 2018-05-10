@@ -38,9 +38,6 @@ void EnemyTank::update()
 
 }
 
-void EnemyTank::onDied()
-{
-}
 
 EnemyTank::~EnemyTank()
 {

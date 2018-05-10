@@ -22,10 +22,8 @@ bool Game::getIsPause()
 
 void Game::update() {
 
-
 	seconds_ = (clock() / 1000) % 60;
 	minutes_ = (clock() / 1000) / 60;
-
 
 	int oldX_;
 	int	oldY_;
@@ -34,14 +32,9 @@ void Game::update() {
 	std::map<int, Entity *>::iterator it2;
 	for (it = entities.begin(); it != entities.end(); it++)
 	{
-
-
 		oldX_ = it->second->getBody()->getX();
 		oldY_ = it->second->getBody()->getY();
-
 		it->second->update();
-
-
 
 		//testCollision with other Entities
 		bool isCollision = false;
@@ -79,10 +72,6 @@ void Game::update() {
 		}
 
 	}
-
-
-
-
 
 	//add new entities in map
 	for each (Entity *newEnt in newEntities)

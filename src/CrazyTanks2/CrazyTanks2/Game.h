@@ -17,8 +17,8 @@ class Game: public IObserver
 public:
 	Game();
 	static const int PLAYERS_LIFE = 3;
-	static const int FIELD_LENGTH = 40;
-	static const int FIELD_WIDTH = 40;
+	static const int FIELD_LENGTH = 30;
+	static const int FIELD_WIDTH = 30;
 	static const  int NUMBER_OF_ENEMY = 5;
 	static const  int NUMBER_OF_WALL = 20;
 	static const  int MAX_LENGTH_OF_WALL = 10;

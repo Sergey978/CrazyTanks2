@@ -29,8 +29,6 @@ Bullet::Bullet()
 	setPhysics(new Physics(this));
 }
 
-
-
 void Bullet::update()
 {
 	getView()->clear();
@@ -57,12 +55,6 @@ void Bullet::update()
 
 
 }
-
-void Bullet::onDied()
-{
-}
-
-
 
 
 

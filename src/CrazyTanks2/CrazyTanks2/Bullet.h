@@ -13,9 +13,7 @@ class Bullet :
 {
 public:
 	Bullet();
-		void update();
-	void onDied();
-
+	void update();
 	virtual ~Bullet();
 
 };

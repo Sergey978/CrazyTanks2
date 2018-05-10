@@ -61,7 +61,6 @@ void Entity::update()
 	}
 
 	
-
 	if (command != Nothing)
 	{
 		physics->move();
@@ -82,12 +81,10 @@ Body *Entity::getBody() const
 	return body;
 }
 
-
 void Entity::setBody(Body *value_)
 {
 	body = value_;
 }
-
 
 void Entity::addObserver(IObserver *o)
 {
