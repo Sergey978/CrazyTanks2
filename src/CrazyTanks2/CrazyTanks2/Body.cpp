@@ -17,13 +17,7 @@ bool Body::testCollision(Entity &otherEntity)
 	int oX_ = otherEntity.getBody()->getX();
 	int oY_ = otherEntity.getBody()->getY();
 
-
-	if (x == oX_ && y == oY_)
-	{
-		return true;
-	}
-
-	return false;
+	return (x == oX_ && y == oY_);
 }
 
 int Body::getX()
