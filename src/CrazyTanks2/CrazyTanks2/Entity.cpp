@@ -7,8 +7,7 @@ int Entity::lastId = 0;
 Entity::Entity()
 {
 	body = new Body(this);
-	id = lastId;
-	Entity::lastId++;
+	id = lastId++;
 }
 
 int Entity::getId()
@@ -77,7 +76,6 @@ void Entity::render()
 
 Body *Entity::getBody() const
 {
-
 	return body;
 }
 
