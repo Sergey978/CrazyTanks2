@@ -4,20 +4,17 @@
 
 enum Direction
 {
-	Right = 0, Down = 1, Left = 2, Up = 3 
-
+	Right, Down, Left, Up
 };
 
 enum EntityType
 {
 	TankInst, EnemyTankInst, BulletInst, GoldInst,  WallInst
-
 };
 
 enum Command
 {
-	Nothing = 0,  left , right , up , down, shoot, pause 
-
+	Nothing,  left , right , up , down, shoot, pause 
 };
 
 enum Group

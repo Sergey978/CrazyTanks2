@@ -4,7 +4,6 @@
 #include"NotControl.h"
 #include"Unarmed.h"
 
-
 Bullet::Bullet()
 {
 	setType( EntityType::BulletInst);
@@ -17,12 +16,10 @@ Bullet::Bullet()
 	health->setHitPoints(1);
 	setHealth(health);
 
-
 	View *view = new View(this);
 	view->setSymbol('o');
 	view->setColor(15);
 	setView(view);
-
 
 	setControl(new NotControl(this));
 	setWeapon(new Unarmed(this));
@@ -36,27 +33,14 @@ void Bullet::update()
 	int	oldY_ = this->getBody()->getY();
 
 	getPhysics()->move();
-
-	//testCollision with other Entities
-	bool isCollision = false;
-		
-		
+	
 	// if border of field
 	if (oldX_ == getBody()->getX() && oldY_ == getBody()->getY())
-	{
-		isCollision = true;
-	}
-
-	if (isCollision)
 	{
 		notifyObservers(Signal::DestroyEntity, this);
 	}
 
-
-
 }
-
-
 
 Bullet::~Bullet()
 {

@@ -162,18 +162,16 @@ void Game::onEntityDestroyed(Entity &entity) {
 
 void Game::gameOver()
 {
-	if (isWin_ == true)
+	if (isWin_)
 	{
 		message_ = "  Game OVER!  YOU WIN !!!";
-		isPause_ = true;
-		drawMessage_();
-	}
-	else if (isWin_ == false)
+	} else 
 	{
 		message_ = " Game OVER! YOU LOSE !!!";
-		isPause_ = true;
-		drawMessage_();
 	}
+	
+	isPause_ = true;
+	drawMessage_();
 }
 
 bool Game::checkIsTarget(std::vector<Group> Targets, Group entityTarget)
@@ -185,6 +183,7 @@ bool Game::checkIsTarget(std::vector<Group> Targets, Group entityTarget)
 		if (target == entityTarget)
 		{
 			result = true;
+			break;
 		}
 	}
 	return result;
@@ -200,31 +199,26 @@ void Game::handleEvent(Signal sig, Entity & sender)
 	switch (sig)
 	{
 	case Signal::CreateEntity:
-	{
 		if (&sender != nullptr)
 		{
 			sender.addObserver(this);
 			addEntity(sender);
 		}
 		break;
-	}
+	
 	case Signal::DestroyEntity:
-	{
 		onEntityDestroyed(sender);
 		break;
-
-	}
+			
 	case Signal::HitEntity:
 		if (sender.getEntityType() == EntityType::TankInst)
 		{
 			playerLife_ = sender.getHealth()->getHitpoints();
 		}
-
+		break;
+		
 	default:
-	{
-
-
-	}
+		break;
 	}
 }
 
@@ -243,7 +237,6 @@ void Game::setWalls_()
 
 	while (wallsNumb_ < NUMBER_OF_WALL)
 	{
-
 		int length = rand() % (MAX_LENGTH_OF_WALL)+1;
 		Direction direct = static_cast <Direction>(rand() % 2);
 		COORD newCoord = genPosition(FIELD_WIDTH, FIELD_LENGTH);
@@ -289,13 +282,11 @@ void Game::setEnemies_()
 
 	while (enemyNumb_ < NUMBER_OF_ENEMY)
 	{
-
 		Direction direct = static_cast <Direction>(rand() % 2);
 		COORD newCoord = genPosition(FIELD_WIDTH, FIELD_LENGTH);
 
 		if (isAvailableArea_(newCoord.X, newCoord.Y, 2))
 		{
-
 			Entity *enemyT = EntityCreator::getEntity(EntityType::EnemyTankInst);
 			enemyT->addObserver(this);
 			enemyT->getBody()->setX(newCoord.X);
@@ -318,7 +309,6 @@ void Game::setCastle_()
 	int x = Game::FIELD_WIDTH / 2;
 	int y = Game::FIELD_LENGTH - 1;
 
-
 	gold->getHealth()->setHitPoints(1);
 	gold->getBody()->setX(x);
 	gold->getBody()->setY(y);
@@ -340,12 +330,8 @@ void Game::setCastle_()
 			wall->getBody()->setY(yw);
 			wall->setGroup(Group::Neutrals);
 			addEntity(*wall);
-
-
 		}
-
 	}
-
 
 }
 
@@ -366,8 +352,7 @@ bool Game::isAvailablePosition_(int x, int y, int length, Direction direct)
 			return false;
 		}
 
-	}
-	if (direct == Direction::Down)
+	} else if (direct == Direction::Down)
 	{
 		x2 = x; y2 = y + length;
 
@@ -407,7 +392,6 @@ bool Game::isAvailableArea_(int x, int y, int distance)
 		return false;
 	}
 
-
 	//check if other entity busy this area
 	std::map<int, Entity *>::iterator it;
 	for (int xe = x - distance; xe <= x + distance; xe++)
@@ -425,7 +409,6 @@ bool Game::isAvailableArea_(int x, int y, int distance)
 	}
 
 	return true;
-
 }
 
 void Game::SetWindow_(int Width, int Height)
@@ -447,14 +430,12 @@ void Game::SetWindow_(int Width, int Height)
 
 void Game::drawBorders_()
 {
-
 	HANDLE hOut;
 	COORD Position;
 
 	SetWindow_(80, 60);
 
 	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
 
 	for (int x = 0; x < FIELD_WIDTH + 2; x++)
 	{

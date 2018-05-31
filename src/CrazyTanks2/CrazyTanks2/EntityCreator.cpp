@@ -1,47 +1,40 @@
 #include "stdafx.h"
 #include "EntityCreator.h"
 
-
-
 EntityCreator::EntityCreator()
 {
 }
 
 Entity *EntityCreator::getEntity(EntityType entName)
 {
-
+	Entity *result;
+	
 	switch (entName)
 	{
 	case EntityType::BulletInst:
-	{
-		return new Bullet();
-
-	}
+		result = new Bullet();
+		break;
+	
 	case EntityType::EnemyTankInst:
-	{
-		return new EnemyTank();
-
-	}
-
+		result = new EnemyTank();
+		break;
+	
 	case EntityType::TankInst:
-	{
-		return new Tank();
-	}
+		result = new Tank();
+		break;
 
 	case EntityType::GoldInst:
-	{
-		return new Gold();
-	}
+		result = new Gold();
+		break;
+			
 	case EntityType::WallInst:
-	{
-		return new Wall();
+		result = new Wall();
+		break;
+	default:
+		result = nullptr;	
 	}
 
-
-
-	}
-
-	return nullptr;
+	return result;
 }
 
 
